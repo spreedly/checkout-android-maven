@@ -4,18 +4,22 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 This repository hosts the compiled Android Archive (AAR) packages for the
-[Spreedly Checkout Android SDK](https://github.com/spreedly/checkout-android-sdk)
+Spreedly Checkout Android SDK
 via [GitHub Packages](https://github.com/features/packages).
 
-Source code, issue tracking, and documentation live in the
-[source repository](https://github.com/spreedly/checkout-android-sdk).
+Source code and issue tracking live in an internal repository. Public documentation
+is available at [docs.spreedly.com](https://docs.spreedly.com).
 
 ## Installation
 
 ### 1. Configure GitHub Packages authentication
 
-GitHub Packages requires a Personal Access Token (PAT) with `read:packages` scope.
-Generate one at [github.com/settings/tokens](https://github.com/settings/tokens).
+> **Note:** GitHub Packages authentication is required while this repository is
+> internal. Once the repository is made public, the credentials block below can
+> be removed and packages will resolve without a PAT.
+
+Generate a Personal Access Token (PAT) with `read:packages` scope at
+[github.com/settings/tokens](https://github.com/settings/tokens).
 
 Add your credentials to `~/.gradle/gradle.properties` (user-level, not committed):
 
@@ -101,8 +105,7 @@ gpg --import spreedly-signing-key.pub
 gpg --verify checkout-paymentsheet-0.13.0.aar.asc checkout-paymentsheet-0.13.0.aar
 ```
 
-See [SIGNATURE_VERIFICATION.md](https://github.com/spreedly/checkout-android-sdk/blob/main/docs/development/SIGNATURE_VERIFICATION.md)
-for full verification instructions.
+Contact [mobile-team@spreedly.com](mailto:mobile-team@spreedly.com) for the public signing key.
 
 ## Distribution Strategy
 
@@ -113,10 +116,12 @@ for full verification instructions.
 - Both release candidates (`-rc.N`) and stable versions are available.
 - Dev builds (`-dev.*`) are published for internal testing.
 
-**Maven Central: Not currently planned.**
-GitHub Packages is the sole distribution channel. This avoids unauthenticated
-access to pre-GA artifacts and simplifies key management. The decision will be
-revisited when the SDK reaches general availability.
+**GitHub Packages visibility:** This repository will be made public, removing
+the PAT requirement for consumers.
+
+**Maven Central:** Planned for a future release to provide unauthenticated
+public access via standard Maven repositories. Until then, GitHub Packages
+is the primary distribution channel.
 
 ## Version History
 
@@ -124,7 +129,7 @@ This repository serves as the GitHub Packages namespace for Maven artifacts.
 Versions v0.0.1 through v0.0.3 have corresponding GitHub Releases on this
 repository. Subsequent versions (0.7.0 through 0.13.0) were published to
 GitHub Packages under the same Maven coordinates but GitHub Releases were
-created on the [source repository](https://github.com/spreedly/checkout-android-sdk/releases)
+created on the source repository
 instead. Starting with the next stable release, GitHub Releases with signed
 tags, checksum manifests, and SBOMs will be created on both repositories.
 
@@ -132,10 +137,9 @@ See [CHANGELOG.md](CHANGELOG.md) for the full release history.
 
 ## Documentation
 
-- [Integration Guide](https://github.com/spreedly/checkout-android-sdk#installation)
-- [API Documentation](https://github.com/spreedly/checkout-android-sdk/tree/main/docs)
+- [Changelog](CHANGELOG.md)
 - [Example App](https://github.com/spreedly/checkout-android-example)
-- [Signature Verification](https://github.com/spreedly/checkout-android-sdk/blob/main/docs/development/SIGNATURE_VERIFICATION.md)
+- [Spreedly Docs](https://docs.spreedly.com)
 
 ## License
 
