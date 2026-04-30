@@ -56,7 +56,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation(platform("com.spreedly:checkout-bom:0.13.0"))
+    implementation(platform("com.spreedly:checkout-bom:1.0.0"))
 
     // Pick the modules you need (versions managed by the BOM):
     implementation("com.spreedly:checkout-paymentsheet")
@@ -70,7 +70,7 @@ dependencies {
 
 ```kotlin
 dependencies {
-    implementation("com.spreedly:checkout-paymentsheet:0.13.0")
+    implementation("com.spreedly:checkout-paymentsheet:1.0.0")
 }
 ```
 
@@ -106,7 +106,7 @@ gpg --import spreedly-signing-key.pub
 gpg --fingerprint
 
 # Verify an AAR signature
-gpg --verify checkout-paymentsheet-0.14.0.aar.asc checkout-paymentsheet-0.14.0.aar
+gpg --verify checkout-paymentsheet-1.0.0.aar.asc checkout-paymentsheet-1.0.0.aar
 ```
 
 Contact [mobile-team@spreedly.com](mailto:mobile-team@spreedly.com) for the public signing key.
@@ -120,13 +120,13 @@ Once the signing key is imported and its fingerprint confirmed, every release al
 ```bash
 git clone https://github.com/spreedly/checkout-android-maven.git
 cd checkout-android-maven
-git tag -v v0.14.0    # expect "Good signature from ..." matching the fingerprint Support shared
+git tag -v v1.0.0    # expect "Good signature from ..." matching the fingerprint Support shared
 ```
 
 **Signed checksum manifest** -- the manifest lists every published artifact (AAR + POM + `.aar.asc`) with its SHA-256 and is itself GPG-signed:
 
 ```bash
-TAG=v0.14.0
+TAG=v1.0.0
 BASE="https://github.com/spreedly/checkout-android-maven/releases/download/${TAG}"
 
 curl -L -o release-manifest.json     "${BASE}/release-manifest.json"
@@ -139,9 +139,9 @@ gpg --verify release-manifest.json.asc release-manifest.json
 
 ```bash
 # Verify a single artifact
-jq -r '.artifacts[] | select(.file == "checkout-paymentsheet-0.14.0.aar") | .sha256' \
+jq -r '.artifacts[] | select(.file == "checkout-paymentsheet-1.0.0.aar") | .sha256' \
   release-manifest.json
-sha256sum checkout-paymentsheet-0.14.0.aar
+sha256sum checkout-paymentsheet-1.0.0.aar
 
 # Or verify everything in one shot
 jq -r '.artifacts[] | "\(.sha256)  \(.file)"' release-manifest.json | sha256sum -c
