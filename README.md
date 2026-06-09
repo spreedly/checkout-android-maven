@@ -14,9 +14,9 @@ is available at [docs.spreedly.com](https://docs.spreedly.com).
 
 ### 1. Configure GitHub Packages authentication
 
-> **Note:** GitHub Packages authentication is required while this repository is
-> internal. Once the repository is made public, the credentials block below can
-> be removed and packages will resolve without a PAT.
+> **Note:** This repository is public, but GitHub Packages still requires
+> authentication to download Maven artifacts. Configure a PAT with
+> `read:packages` scope and a `credentials` block in `settings.gradle.kts`.
 
 Generate a Personal Access Token (PAT) with `read:packages` scope at
 [github.com/settings/tokens](https://github.com/settings/tokens).
@@ -151,13 +151,15 @@ jq -r '.artifacts[] | "\(.sha256)  \(.file)"' release-manifest.json | sha256sum 
 
 **Current channel: GitHub Packages (Maven)**
 
-- Requires a GitHub Personal Access Token with `read:packages` scope.
+- Requires a GitHub Personal Access Token with `read:packages` scope, even
+  though this repository is public.
 - All artifacts are published under the `com.spreedly` group.
 - Both release candidates (`-rc.N`) and stable versions are available.
 - Dev builds (`-dev.*`) are published for internal testing.
 
-**GitHub Packages visibility:** This repository will be made public, removing
-the PAT requirement for consumers.
+**GitHub Packages visibility:** This repository is public. Maven downloads from
+`maven.pkg.github.com` still require authentication; unauthenticated access is
+not supported for the Maven registry.
 
 **Maven Central:** Planned for a future release to provide unauthenticated
 public access via standard Maven repositories. Until then, GitHub Packages
